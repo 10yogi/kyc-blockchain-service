@@ -1,8 +1,8 @@
-package com.kycblockchainservice.kycblockchainservice.rest;
+package com.kycblockchainservice.rest;
 
-import com.kycblockchainservice.kycblockchainservice.blockchain.model.AddKycRequestDto;
-import com.kycblockchainservice.kycblockchainservice.blockchain.model.KycAccessRequestDto;
-import com.kycblockchainservice.kycblockchainservice.service.KycService;
+import com.kycblockchainservice.blockchain.model.AddKycRequestDto;
+import com.kycblockchainservice.blockchain.model.KycAccessRequestDto;
+import com.kycblockchainservice.service.KycService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

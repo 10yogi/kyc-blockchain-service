@@ -1,4 +1,4 @@
-package com.kycblockchainservice.kycblockchainservice.properties;
+package com.kycblockchainservice.properties;
 
 import lombok.Getter;
 import lombok.Setter;

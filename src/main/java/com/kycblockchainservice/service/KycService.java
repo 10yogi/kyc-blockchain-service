@@ -1,9 +1,8 @@
-package com.kycblockchainservice.kycblockchainservice.service;
+package com.kycblockchainservice.service;
 
-import com.kycblockchainservice.kycblockchainservice.blockchain.model.AddKycRequestDto;
-import com.kycblockchainservice.kycblockchainservice.blockchain.model.KycAccessRequestDto;
-import com.kycblockchainservice.kycblockchainservice.blockchain.model.SmartContract;
-import com.kycblockchainservice.kycblockchainservice.properties.TransactionProperties;
+import com.kycblockchainservice.blockchain.model.AddKycRequestDto;
+import com.kycblockchainservice.blockchain.model.SmartContract;
+import com.kycblockchainservice.properties.TransactionProperties;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;

@@ -1,8 +1,8 @@
-package com.kycblockchainservice.kycblockchainservice.config;
+package com.kycblockchainservice.config;
 
-import com.kycblockchainservice.kycblockchainservice.blockchain.model.SmartContract;
-import com.kycblockchainservice.kycblockchainservice.properties.TransactionProperties;
-import com.kycblockchainservice.kycblockchainservice.service.KycService;
+import com.kycblockchainservice.blockchain.model.SmartContract;
+import com.kycblockchainservice.properties.TransactionProperties;
+import com.kycblockchainservice.service.KycService;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.kycblockchainservice.kycblockchainservice.blockchain.model;
+package com.kycblockchainservice.blockchain.model;
 
 import java.math.BigInteger;
 import java.util.Arrays;

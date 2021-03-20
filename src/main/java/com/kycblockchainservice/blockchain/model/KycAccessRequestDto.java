@@ -1,4 +1,4 @@
-package com.kycblockchainservice.kycblockchainservice.blockchain.model;
+package com.kycblockchainservice.blockchain.model;
 
 public class KycAccessRequestDto {
 

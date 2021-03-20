@@ -43,9 +43,9 @@ public class OwnerService {
         return contract.getKyc(userAddress).send();
     }
 
-    public void kycAccess(KycAccessRequestDto kycAccessRequestDto, String ownerAddress) throws Exception {
+    public void kycAccess(String bankAddress, String ownerAddress) throws Exception {
         SmartContract contract = loadContract(ownerAddress);
-        contract.giveKycDataAccess(kycAccessRequestDto.getAddress());
+        contract.giveKycDataAccess(bankAddress);
     }
 
     private SmartContract loadContract(String accountAddress) {

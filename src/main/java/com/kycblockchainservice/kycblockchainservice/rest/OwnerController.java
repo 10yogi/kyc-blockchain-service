@@ -27,6 +27,9 @@ public class OwnerController {
     @Value("${chain.contract.indus-address}")
     private String indusAddress;
 
+    @Value("${chain.contract.sbi-address}")
+    private String sbiAddress;
+
     @Autowired
     private Web3j web3j;
 
@@ -54,7 +57,14 @@ public class OwnerController {
     @PostMapping("/customer/kyc/access")
     public void kycAccess(@RequestBody KycAccessRequestDto kycAccessRequestDto) {
         try {
-            ownerService.kycAccess(kycAccessRequestDto, customerAddress);
+            switch (kycAccessRequestDto.getBankName()){
+                case "INDUS":
+                    ownerService.kycAccess(indusAddress, customerAddress);
+                case "ICICI":
+                    ownerService.kycAccess(iciciAddress, customerAddress);
+                case "SBI":
+                    ownerService.kycAccess(sbiAddress, customerAddress);
+            }
         } catch (final Exception e) {
             throw new RuntimeException("access approval failed" + e.getMessage());
         }

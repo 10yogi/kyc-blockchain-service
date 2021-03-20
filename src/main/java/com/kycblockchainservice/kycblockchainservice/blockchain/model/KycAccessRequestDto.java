@@ -2,13 +2,14 @@ package com.kycblockchainservice.kycblockchainservice.blockchain.model;
 
 public class KycAccessRequestDto {
 
-    private String address;
+    private String bankName;
 
-    public String getAddress() {
-        return address;
+    public String getBankName() {
+        return bankName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBankName(final String bankName) {
+        this.bankName = bankName;
     }
+
 }

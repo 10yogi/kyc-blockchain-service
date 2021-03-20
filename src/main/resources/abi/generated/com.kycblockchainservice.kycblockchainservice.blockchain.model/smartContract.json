@@ -1,0 +1,1 @@
+[{"constant":false,"inputs":[{"name":"x","type":"string"}],"name":"setStoredData","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getStoredData","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}]

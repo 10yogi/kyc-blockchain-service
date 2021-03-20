@@ -23,8 +23,8 @@ public class SmartContractConfiguration {
 
     private static final Logger LOG = LoggerFactory.getLogger(SmartContractConfiguration.class);
 
-    @Value("${chain.contract.owner-address}")
-    private String ownerAddress;
+    @Value("${chain.contract.icici}")
+    private String iciciAddress;
 
     @Value("${web3j.client-address}")
     private String clientAddress;
@@ -68,6 +68,6 @@ public class SmartContractConfiguration {
     }
 
     private TransactionManager txManager(Web3j web3j) {
-        return new ClientTransactionManager(web3j, ownerAddress);
+        return new ClientTransactionManager(web3j, iciciAddress);
     }
 }

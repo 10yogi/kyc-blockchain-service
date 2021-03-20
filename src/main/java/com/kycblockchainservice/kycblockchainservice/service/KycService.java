@@ -9,7 +9,7 @@ import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tuples.generated.Tuple2;
 import org.web3j.tx.ClientTransactionManager;
-import org.web3j.tx.TransactionManager;""
+import org.web3j.tx.TransactionManager;
 
 import java.io.IOException;
 import java.math.BigInteger;

@@ -16,6 +16,9 @@ import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.ClientTransactionManager;
 import org.web3j.tx.TransactionManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Configuration
 public class SmartContractConfiguration {
 
@@ -52,7 +55,15 @@ public class SmartContractConfiguration {
 
     private SmartContract deployContract(Web3j web3j) throws Exception {
         LOG.info("About to deploy new contract...");
-        SmartContract contract = SmartContract.deploy(web3j, txManager(web3j), config.gas()).send();
+        ArrayList<String> param1 = new ArrayList<String>(){{
+            add("0x5753a83f2075c328CDeF49ac77cbe707a1E448E2");
+        }};
+        ArrayList<String> param2 = new ArrayList<String>(){{
+            add("0x5753a83f2075c328CDeF49ac77cbe707a1E448E2");
+            add("0x50B511b37742CFd698734eE1749d635eaa58CE90");
+        }};
+        SmartContract contract = SmartContract.deploy(web3j ,txManager(web3j) ,config.gas()
+                ,param1 ,param2).send();
         LOG.info("Deployed new contract with address '{}'", contract.getContractAddress());
         return contract;
     }

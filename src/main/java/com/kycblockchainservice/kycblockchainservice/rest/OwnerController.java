@@ -3,9 +3,14 @@ package com.kycblockchainservice.kycblockchainservice.rest;
 import com.kycblockchainservice.kycblockchainservice.blockchain.model.AddKycRequestDto;
 import com.kycblockchainservice.kycblockchainservice.blockchain.model.KycAccessRequestDto;
 import com.kycblockchainservice.kycblockchainservice.service.OwnerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tuples.generated.Tuple2;
@@ -13,8 +18,14 @@ import org.web3j.tuples.generated.Tuple2;
 @RestController
 public class OwnerController {
 
-    @Value("${chain.contract.owner-address}")
-    private String ownerAddress;
+    @Value("${chain.contract.icici-address}")
+    private String iciciAddress;
+
+    @Value("${chain.contract.customer-address}")
+    private String customerAddress;
+
+    @Value("${chain.contract.indus-address}")
+    private String indusAddress;
 
     @Autowired
     private Web3j web3j;
@@ -22,25 +33,31 @@ public class OwnerController {
     @Autowired
     private OwnerService ownerService;
 
-    @GetMapping("/owner")
-    public String getAddress() {
-        return ownerAddress;
-    }
-
-
-    @PostMapping("/owner/kyc/add")
+    @PostMapping("/icici/kyc/add")
     public TransactionReceipt addKyc(@RequestBody AddKycRequestDto addKycRequestDto) throws Exception {
-        return ownerService.addKyc(addKycRequestDto ,ownerAddress);
+        try {
+            return ownerService.addKyc(addKycRequestDto, iciciAddress);
+        } catch (final Exception e) {
+            throw new RuntimeException("forbidden failed to fetch kyc" + e.getMessage());
+        }
     }
 
-    @GetMapping("/owner/kyc/get")
-    public Tuple2<String, String> getKyc(@RequestParam String userAddress) throws Exception {
-        return ownerService.getKyc(userAddress ,ownerAddress);
+    @GetMapping("/indus/kyc/get")
+    public Tuple2<String, String> getKyc(@RequestParam String customerAddress) throws Exception {
+        try {
+            return ownerService.getKyc(customerAddress, indusAddress);
+        } catch (final Exception e) {
+            throw new RuntimeException("forbidden failed to fetch kyc" + e.getMessage());
+        }
     }
 
-    @PostMapping("/owner/kyc/access")
-    public void kycAccess(@RequestBody KycAccessRequestDto kycAccessRequestDto) throws Exception {
-        ownerService.kycAccess(kycAccessRequestDto ,ownerAddress);
+    @PostMapping("/customer/kyc/access")
+    public void kycAccess(@RequestBody KycAccessRequestDto kycAccessRequestDto) {
+        try {
+            ownerService.kycAccess(kycAccessRequestDto, customerAddress);
+        } catch (final Exception e) {
+            throw new RuntimeException("access approval failed" + e.getMessage());
+        }
     }
 
 }

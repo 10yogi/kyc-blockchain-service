@@ -2,33 +2,34 @@ package com.kycblockchainservice.kycblockchainservice.blockchain.model;
 
 public class AddKycRequestDto {
 
-    private String userName;
+    private String customerAddress;
 
-    private String documentType;
+    private String otherDetails;
 
     private String document;
 
-    public String getUserName() {
-        return userName;
+
+    public String getCustomerAddress() {
+        return customerAddress;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setCustomerAddress(final String customerAddress) {
+        this.customerAddress = customerAddress;
     }
 
-    public String getDocumentType() {
-        return documentType;
+    public String getOtherDetails() {
+        return otherDetails;
     }
 
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
+    public void setOtherDetails(final String otherDetails) {
+        this.otherDetails = otherDetails;
     }
 
     public String getDocument() {
         return document;
     }
 
-    public void setDocument(String document) {
+    public void setDocument(final String document) {
         this.document = document;
     }
 }

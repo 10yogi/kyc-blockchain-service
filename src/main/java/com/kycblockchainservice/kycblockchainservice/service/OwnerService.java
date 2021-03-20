@@ -33,7 +33,9 @@ public class OwnerService {
 
     public TransactionReceipt addKyc(AddKycRequestDto addKycRequestDto , String ownerAddress) throws Exception {
         SmartContract contract = loadContract(ownerAddress);
-        return contract.addKyc(addKycRequestDto.getUserName() ,getCertificate(addKycRequestDto.getUserName()) , UUID.randomUUID().toString()).send();
+        return contract.addKyc(addKycRequestDto.getCustomerAddress() ,
+                getCertificate(addKycRequestDto.getCustomerAddress() + addKycRequestDto.getOtherDetails()) ,
+                UUID.randomUUID().toString()).send();
     }
 
     public Tuple2<String, String> getKyc(String userAddress , String ownerAddress) throws Exception {

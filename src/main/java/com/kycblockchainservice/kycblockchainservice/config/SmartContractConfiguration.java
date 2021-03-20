@@ -2,7 +2,7 @@ package com.kycblockchainservice.kycblockchainservice.config;
 
 import com.kycblockchainservice.kycblockchainservice.blockchain.model.SmartContract;
 import com.kycblockchainservice.kycblockchainservice.properties.TransactionProperties;
-import com.kycblockchainservice.kycblockchainservice.service.OwnerService;
+import com.kycblockchainservice.kycblockchainservice.service.KycService;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,6 @@ import org.web3j.tx.ClientTransactionManager;
 import org.web3j.tx.TransactionManager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class SmartContractConfiguration {
@@ -39,7 +38,7 @@ public class SmartContractConfiguration {
     }
 
     @Bean
-    public OwnerService contract(Web3j web3j, @Value("${chain.contract.address:}") String contractAddress)
+    public KycService contract(Web3j web3j, @Value("${chain.contract.address:}") String contractAddress)
             throws Exception {
         if (StringUtils.isEmpty(contractAddress)) {
             SmartContract contract = deployContract(web3j);
@@ -49,8 +48,8 @@ public class SmartContractConfiguration {
         return initOwnerService(contractAddress, web3j);
     }
 
-    private OwnerService initOwnerService(String contractAddress, Web3j web3j) {
-        return new OwnerService(contractAddress, web3j, config);
+    private KycService initOwnerService(String contractAddress, Web3j web3j) {
+        return new KycService(contractAddress, web3j, config);
     }
 
     private SmartContract deployContract(Web3j web3j) throws Exception {

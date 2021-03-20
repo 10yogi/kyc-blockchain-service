@@ -9,19 +9,19 @@ import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tuples.generated.Tuple2;
 import org.web3j.tx.ClientTransactionManager;
-import org.web3j.tx.TransactionManager;
+import org.web3j.tx.TransactionManager;""
 
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.UUID;
 
-public class OwnerService {
+public class KycService {
 
     private final String contractAddress;
     private final Web3j web3j;
     private final TransactionProperties config;
 
-    public OwnerService(String contractAddress, Web3j web3j, TransactionProperties config) {
+    public KycService(String contractAddress, Web3j web3j, TransactionProperties config) {
         this.contractAddress = contractAddress;
         this.web3j = web3j;
         this.config = config;

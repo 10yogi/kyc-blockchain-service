@@ -2,7 +2,7 @@ package com.kycblockchainservice.kycblockchainservice.rest;
 
 import com.kycblockchainservice.kycblockchainservice.blockchain.model.AddKycRequestDto;
 import com.kycblockchainservice.kycblockchainservice.blockchain.model.KycAccessRequestDto;
-import com.kycblockchainservice.kycblockchainservice.service.OwnerService;
+import com.kycblockchainservice.kycblockchainservice.service.KycService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +16,7 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tuples.generated.Tuple2;
 
 @RestController
-public class OwnerController {
+public class KycController {
 
     @Value("${chain.contract.icici-address}")
     private String iciciAddress;
@@ -34,12 +34,12 @@ public class OwnerController {
     private Web3j web3j;
 
     @Autowired
-    private OwnerService ownerService;
+    private KycService kycService;
 
     @PostMapping("/icici/kyc/add")
     public TransactionReceipt addKyc(@RequestBody AddKycRequestDto addKycRequestDto) throws Exception {
         try {
-            return ownerService.addKyc(addKycRequestDto, iciciAddress);
+            return kycService.addKyc(addKycRequestDto, iciciAddress);
         } catch (final Exception e) {
             throw new RuntimeException("forbidden failed to fetch kyc" + e.getMessage());
         }
@@ -48,7 +48,7 @@ public class OwnerController {
     @GetMapping("/indus/kyc/get")
     public Tuple2<String, String> getKyc(@RequestParam String customerAddress) throws Exception {
         try {
-            return ownerService.getKyc(customerAddress, indusAddress);
+            return kycService.getKyc(customerAddress, indusAddress);
         } catch (final Exception e) {
             throw new RuntimeException("forbidden failed to fetch kyc" + e.getMessage());
         }
@@ -59,11 +59,11 @@ public class OwnerController {
         try {
             switch (kycAccessRequestDto.getBankName()){
                 case "INDUS":
-                    ownerService.kycAccess(indusAddress, customerAddress);
+                    kycService.kycAccess(indusAddress, customerAddress);
                 case "ICICI":
-                    ownerService.kycAccess(iciciAddress, customerAddress);
+                    kycService.kycAccess(iciciAddress, customerAddress);
                 case "SBI":
-                    ownerService.kycAccess(sbiAddress, customerAddress);
+                    kycService.kycAccess(sbiAddress, customerAddress);
             }
         } catch (final Exception e) {
             throw new RuntimeException("access approval failed" + e.getMessage());
